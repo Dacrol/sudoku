@@ -5,7 +5,8 @@
     "skipLibCheck": true,
     "noImplicitAny": false,
     "strict": false,
-    "types": []
+    "types": [],
+    "lib": ["ESNext", "DOM"]
   },
   "exclude": [
     "node_modules",
