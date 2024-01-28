@@ -24,7 +24,7 @@ const findFirstEmptyCell = (board: number[][]) => {
   return null;
 };
 
-const backtrackSolver = (board: number[][] = baseBoard) => {
+export const backtrackSolver = (board: number[][] = baseBoard) => {
   const firstEmptyCell = findFirstEmptyCell(board);
   if (!firstEmptyCell) {
     return board;
@@ -46,4 +46,23 @@ const backtrackSolver = (board: number[][] = baseBoard) => {
   return null;
 };
 
-console.table(backtrackSolver(baseBoard));
+export const generateChallenge = (difficulty: 'easy' | 'medium' | 'hard') => {
+  const difficultyMap = {
+    easy: 10,
+    medium: 20,
+    hard: 30,
+  };
+  const challenge = backtrackSolver();
+  let cellsToClear = difficultyMap[difficulty];
+  while (cellsToClear > 0) {
+    const row = Math.floor(Math.random() * 9);
+    const col = Math.floor(Math.random() * 9);
+    if (challenge[row][col] !== 0) {
+      challenge[row][col] = 0;
+      cellsToClear--;
+    }
+  }
+  return challenge;
+};
+
+console.table(generateChallenge('easy'));

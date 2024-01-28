@@ -1,7 +1,13 @@
-import { generateSudokuBoard } from './generator';
+import express from 'express';
+import { generateChallenge } from './generator';
 
-const board = generateSudokuBoard();
+const app = express();
 
-const boardString = board.map(row => row.join('')).join('\n');
+app.get('/api/board', (req, res) => {
+  const board = generateChallenge('medium');
+  res.json(board);
+});
 
-console.log(boardString);
+app.listen(3001, () => {
+  console.log('Server listening on port 3001');
+});
