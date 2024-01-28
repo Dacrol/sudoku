@@ -8,6 +8,12 @@ app.get('/api/board', (req, res) => {
   res.json(board);
 });
 
-app.listen(3001, () => {
+app.use(express.static('dist'));
+
+app.get('*', (req, res) => {
+  res.sendFile('index.html', { root: 'dist' });
+});
+
+app.listen(process.env.PORT || 3001, () => {
   console.log('Server listening on port 3001');
 });

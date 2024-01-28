@@ -1,4 +1,4 @@
-import { checkBoard, checkColumn, checkRow, checkSquare } from './checker';
+import { checkBoard } from './checker';
 
 const baseBoard = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -64,5 +64,3 @@ export const generateChallenge = (difficulty: 'easy' | 'medium' | 'hard') => {
   }
   return challenge;
 };
-
-console.table(generateChallenge('easy'));
