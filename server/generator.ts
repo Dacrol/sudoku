@@ -1,16 +1,18 @@
 import { checkBoard } from './checker';
 
-const baseBoard = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
+const getBaseBoard = () => {
+  return [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ];
+};
 
 const findFirstEmptyCell = (board: number[][]) => {
   for (let i = 0; i < 9; i++) {
@@ -24,7 +26,7 @@ const findFirstEmptyCell = (board: number[][]) => {
   return null;
 };
 
-export const backtrackSolver = (board: number[][] = baseBoard) => {
+export const backtrackSolver = (board: number[][]) => {
   const firstEmptyCell = findFirstEmptyCell(board);
   if (!firstEmptyCell) {
     return board;
@@ -52,7 +54,7 @@ export const generateChallenge = (difficulty: 'easy' | 'medium' | 'hard') => {
     medium: 20,
     hard: 30,
   };
-  const challenge = backtrackSolver();
+  const challenge = backtrackSolver(getBaseBoard());
   let cellsToClear = difficultyMap[difficulty];
   while (cellsToClear > 0) {
     const row = Math.floor(Math.random() * 9);

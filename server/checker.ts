@@ -37,10 +37,18 @@ export const checkSquare = (board: number[][], squareIndex: number) => {
   return checkRow(square);
 };
 
+const checkBoardFilled = (board: number[][]) => {
+  return board.every(row => row.every(cell => cell !== 0));
+};
+
 export const checkBoard = (board: number[][]) => {
   return (
     board.every(row => checkRow(row)) &&
     board.every((_, i) => checkColumn(board, i)) &&
     board.every((_, i) => checkSquare(board, i))
   );
+};
+
+export const checkFullBoard = (board: number[][]) => {
+  return checkBoardFilled(board) && checkBoard(board);
 };

@@ -1,11 +1,24 @@
 import express from 'express';
 import { generateChallenge } from './generator';
+import { checkFullBoard } from './checker';
 
 const app = express();
 
 app.get('/api/board', (req, res) => {
-  const board = generateChallenge('medium');
+  const board = generateChallenge('easy');
   res.json(board);
+});
+
+app.post('/api/check', express.json(), (req, res) => {
+  const { board } = req.body;
+  console.log(board);
+  if (
+    !(Array.isArray(board) && board.length === 9 && board.every(Array.isArray))
+  ) {
+    return res.sendStatus(400);
+  }
+  const valid = checkFullBoard(board);
+  res.json({ valid });
 });
 
 app.use(express.static('dist'));
